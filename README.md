@@ -4,7 +4,7 @@ Tower Tumble for Team Double 11 (Team 11) Game Design 5970
 A description of current progress, plans, and format here.
 Currently a level is made of a couple key components. First: launcher. This should launch ball prefabs towards blocks and plushies. Blocks act as structures/obstacles. Plushies are the objective, and can be collected by any collision. A level manager is used to handle the majority of the score, UI, winning/losing etc. Basically defining the level. 
 
-Level manager set up
+Level manager set up <br>
 Given how critical it is to get right, I want to outline level manager in particular
 ```
 shotText: corresponds to the shot count at the top left of the screen
