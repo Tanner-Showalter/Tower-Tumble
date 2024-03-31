@@ -10,7 +10,7 @@ Given how critical it is to get right, I want to outline level manager in partic
 shotText: corresponds to the shot count at the top left of the screen
 winText: corresponds to the win text at the center of the screen
 plushText: corresponds to the remaining plush count at the top right of the screen
-plushCount: number of plushies in the level. *automatically collected as long as plushies are tagged "Plushie"*
+plushCount: number of plushies in the level. *automatically collected as long as plushies are tagged "Plushie"
 shotCount: number of shots in the level. When reduced to 0, no additional shots should occur, and a timer starts. If plushies are not collected within 5 seconds, the level is lost.
 lost: I honestly forgot, I will adjust this later. Think that was for preventing weird coroutine edge cases, unsure. Regardless, hopefully shouldn't need adjustment
 ```
