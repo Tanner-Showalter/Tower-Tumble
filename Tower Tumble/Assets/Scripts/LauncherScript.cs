@@ -43,6 +43,7 @@ public class LauncherScript : MonoBehaviour
     // Launch cannonball
     void Fire()
     {
+        Debug.Log("Firing");
         // Instantiate cannonball
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

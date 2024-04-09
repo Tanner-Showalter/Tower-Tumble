@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class LevelManager : MonoBehaviour
     // Count of plushies, will go down as collected
     private int plushCount;
     
+    public int maxShotCount;
     public int shotCount;
 
     private bool lost = false;
@@ -27,6 +29,7 @@ public class LevelManager : MonoBehaviour
         plushText.text = "Plushies Remaining: " + plushCount;
         winText.enabled = false;
         shotText.text = "Shots: " + shotCount;
+        maxShotCount = shotCount;
     }
 
     // Update is called once per frame
@@ -69,6 +72,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    // Note about win/lose states. Time.timescale is set to 0. When advancing to next level
+    // or restarting a level, set timescale back to 1 so physics runs again.
+
     // Does all the stuff for winning
     private void winFunc() 
     {
@@ -89,5 +95,13 @@ public class LevelManager : MonoBehaviour
         winText.enabled = true;
         lost = true;
         Time.timeScale = 0;
+    }
+
+    public void resetLevel()
+    {
+        print("Reset level!");
+        Time.timeScale = 1;
+        shotCount = maxShotCount;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
