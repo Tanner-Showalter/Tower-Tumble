@@ -16,3 +16,5 @@ lost: I honestly forgot, I will adjust this later. Think that was for preventing
 Courotine lostC: This will be initialized when the timer begins. winFunc will use this reference to stop the losing countdown if plushies are collected in the 5 second window.
 ```
 To set this up for a new level, set up UI elements and set the appropriate shot count. Make sure the level manager is named "Level Manager" EXACTLY. Otherwise launcher and plushie scripts will not recognize it. 
+
+A warning for level transitions. Because the game pauses timescale win or lose, when restarting/transitioning between levels, make sure timescale is reset to 1.
