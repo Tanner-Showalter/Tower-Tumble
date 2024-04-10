@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
         winText.enabled = false;
         shotText.text = "Shots: " + shotCount;
         maxShotCount = shotCount;
+	Time.timeScale = 1.0f; //added by Seth
     }
 
     // Update is called once per frame
