@@ -7,6 +7,6 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void PlayLevel1() {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("Tutorial Level");
     }
 }

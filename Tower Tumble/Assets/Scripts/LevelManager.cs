@@ -105,4 +105,11 @@ public class LevelManager : MonoBehaviour
         shotCount = maxShotCount;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void returnToMenu() 
+    {
+        // Time reset just in case it's zero when leaving the level
+        Time.timeScale = 1;
+        SceneManager.LoadSceneAsync("Main Menu");
+    }
 }
