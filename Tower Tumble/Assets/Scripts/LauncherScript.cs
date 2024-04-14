@@ -31,29 +31,29 @@ public class LauncherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && shotCount > 0) {
+
+    }
+
+    // Launch cannonball
+    public void Fire()
+    {
+        if (shotCount > 0) {
+            Debug.Log("Firing");
             // Obtain values
             force = float.Parse(forceInput.GetComponent<TMP_InputField>().text);
             mass = float.Parse(massInput.GetComponent<TMP_InputField>().text);
             angle = float.Parse(angleInput.GetComponent<TMP_InputField>().text);
-            Fire();
+            // Instantiate cannonball
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+            projectileRb.mass = mass;
+            // Apply forces
+            // Last parameter may be changed if the shooter is rotated. Below handles basic firing in 2d
+            Vector3 projectileDir = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0);
+            projectileRb.AddForce(projectileDir * force, ForceMode.Impulse);
+            // Reduce shot counters
+            shotCount--;
+            levelManager.GetComponent<LevelManager>().DecreaseShotCount();
         }
-    }
-
-    // Launch cannonball
-    void Fire()
-    {
-        Debug.Log("Firing");
-        // Instantiate cannonball
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-        projectileRb.mass = mass;
-        // Apply forces
-        // Last parameter may be changed if the shooter is rotated. Below handles basic firing in 2d
-        Vector3 projectileDir = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0);
-        projectileRb.AddForce(projectileDir * force, ForceMode.Impulse);
-        // Reduce shot counters
-        shotCount--;
-        levelManager.GetComponent<LevelManager>().DecreaseShotCount();
     }
 }
