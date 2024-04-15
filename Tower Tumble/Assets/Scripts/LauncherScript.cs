@@ -17,6 +17,7 @@ public class LauncherScript : MonoBehaviour
     public TextMeshProUGUI shotText;
     private GameObject levelManager;
     public GameObject projectilePrefab;
+    AudioSource aud;
 
     // Local shot count for limiting shots
     private int shotCount;
@@ -26,6 +27,7 @@ public class LauncherScript : MonoBehaviour
     {
         levelManager = GameObject.Find("Level Manager");
         shotCount = levelManager.GetComponent<LevelManager>().shotCount;
+        aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,7 @@ public class LauncherScript : MonoBehaviour
             // Reduce shot counters
             shotCount--;
             levelManager.GetComponent<LevelManager>().DecreaseShotCount();
+            aud.Play();
         }
     }
 }

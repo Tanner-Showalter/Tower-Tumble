@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI shotText;
     public TextMeshProUGUI winText;
     public TextMeshProUGUI plushText;
+    public AudioSource audWin;
+    public AudioSource audLose;
+    public AudioSource audDing;
 
     // Count of plushies, will go down as collected
     private int plushCount;
@@ -30,7 +33,9 @@ public class LevelManager : MonoBehaviour
         winText.enabled = false;
         shotText.text = "Shots: " + shotCount;
         maxShotCount = shotCount;
-	Time.timeScale = 1.0f; //added by Seth
+        //audWin = GetComponent<AudioSource>();
+        //audLose = GetComponent<AudioSource>();
+        Time.timeScale = 1.0f; //added by Seth
     }
 
     // Update is called once per frame
@@ -43,6 +48,7 @@ public class LevelManager : MonoBehaviour
     {
         plushCount--;
         plushText.text = "Plushies Remaining: " + plushCount;
+        audDing.Play();
         if (plushCount <= 0) 
         {
             winFunc();
@@ -81,6 +87,8 @@ public class LevelManager : MonoBehaviour
     {
         winText.text = "You Win!";
         winText.enabled = true;
+        audLose.Pause();
+        audWin.Play();
         if (lostC != null) {
             StopCoroutine(lostC);
         }
@@ -95,6 +103,8 @@ public class LevelManager : MonoBehaviour
         winText.text = "You Lost!";
         winText.enabled = true;
         lost = true;
+        audWin.Pause();
+        audLose.Play();
         Time.timeScale = 0;
     }
 
