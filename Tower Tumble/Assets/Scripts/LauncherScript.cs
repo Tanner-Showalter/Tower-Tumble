@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor; //added by Mengjin
 
 public class LauncherScript : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class LauncherScript : MonoBehaviour
     }
 
     // Launch cannonball
-    public void Fire()
+    public void Fire()  // edited by Mengjin
     {
         if (shotCount > 0) {
             Debug.Log("Firing");
@@ -45,7 +46,11 @@ public class LauncherScript : MonoBehaviour
             force = float.Parse(forceInput.GetComponent<TMP_InputField>().text);
             mass = float.Parse(massInput.GetComponent<TMP_InputField>().text);
             angle = float.Parse(angleInput.GetComponent<TMP_InputField>().text);
-            // Instantiate cannonball
+            if(force>50.0 | mass >10){
+              bool warning=EditorUtility.DisplayDialog("Warning","Please enter a force below 50 and a mass below 10.","OK");
+            }
+            else{
+                // Instantiate cannonball
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
             projectileRb.mass = mass;
@@ -57,6 +62,7 @@ public class LauncherScript : MonoBehaviour
             shotCount--;
             levelManager.GetComponent<LevelManager>().DecreaseShotCount();
             aud.Play();
+            }
         }
     }
 }
