@@ -9,4 +9,8 @@ public class MainMenu : MonoBehaviour
     public void PlayLevel1() {
         SceneManager.LoadSceneAsync("Tutorial Level");
     }
+    
+    public void PlayLevel2() {
+        SceneManager.LoadSceneAsync("Level 2");
+    }
 }
